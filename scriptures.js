@@ -9,7 +9,16 @@ function handleFormSubmission(event) {
     var apiUrl = "https://aoe2.net/api/player/matches?game=aoe2de&steam_id=" + steamID + "&count=" + nbGames;
     console.log(apiUrl);
 
-    document.getElementById("cards").innerHTML = '<iframe src="' + apiUrl + '"></iframe>';
+    // Create a new <a> element
+    var linkElement = document.createElement("a");
+    linkElement.href = apiUrl; // Set the href attribute to the constructed URL
+    linkElement.textContent = apiUrl; // Set the text content of the link to the URL
+    linkElement.target = "_blank"; // Open the link in a new tab or window
+
+    // Clear previous content in the "cards" div and append the link
+    var cardsDiv = document.getElementById("cards");
+    cardsDiv.innerHTML = ""; // Clear previous content
+    cardsDiv.appendChild(linkElement); // Append the link
 }
 
 // Add an event listener to the form
