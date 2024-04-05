@@ -22,7 +22,7 @@ fetch(apiUrl).then((data)=>{
 				<li>Number of players : ${values.num_players}</li>
 				<li>Map type : ${values.map_type}</li>
 				<li>Victory : ${values.victory}</li>
-				</ul> 
+			</ul> 
 	</div>`;
 	});
 	document.getElementById("cards").innerHTML=data1;
