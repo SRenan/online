@@ -7,6 +7,8 @@ console.log(steamID);
 var apiUrl = "https://aoe2.net/api/player/matches?game=aoe2de&steam_id=" + steamID + "&count=" + nbGames;
 console.log(apiUrl);
 
+document.getElementById("cards").innerHTML = '<iframe src="' + apiUrl + '"></iframe>';
+
 	/*
 event.preventDefault()
 fetch(apiUrl).then((data)=>{
