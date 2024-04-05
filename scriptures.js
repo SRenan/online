@@ -7,6 +7,7 @@ console.log(steamID);
 var apiUrl = "https://aoe2.net/api/player/matches?game=aoe2de&steam_id=" + steamID + "&count=" + nbGames;
 console.log(apiUrl);
 
+	/*
 event.preventDefault()
 fetch(apiUrl).then((data)=>{
 	console.log(data);
@@ -30,4 +31,6 @@ fetch(apiUrl).then((data)=>{
 }).catch((err)=>{
 	console.log(err);
 })
+
+*/
 }
