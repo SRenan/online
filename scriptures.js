@@ -1,5 +1,5 @@
-function myFunction(event) {
-    event.preventDefault(); // Prevent form submission default behavior
+document.getElementById("myForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent default form submission behavior
 
     var nbGames = document.getElementById("nbGames").value;
     console.log(nbGames);
@@ -9,4 +9,4 @@ function myFunction(event) {
     console.log(apiUrl);
 
     document.getElementById("cards").innerHTML = '<iframe src="' + apiUrl + '"></iframe>';
-}
+});
