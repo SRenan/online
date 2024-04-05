@@ -17,6 +17,14 @@
         #jsonDataInput {
         width: 100%;
     }
+    .color1 { background-color: blue; }
+    .color2 { background-color: red; }
+    .color3 { background-color: yellow; }
+    .color4 { background-color: brown; }
+    .color5 { background-color: orange; }
+    .color6 { background-color: lime; }
+    .color7 { background-color: grey; }
+    .color8 { background-color: magenta; }
 </style>
 </head>
 <body>
@@ -44,7 +52,7 @@
   <!-- Add more rows as needed -->
 </table>
 
-<p> <a href="skyblog.html">Back to skyblog!!</a> </p>
+<p> <a href="skyblog.html">Back to skyblog!!!</a> </p>
     
 <script>
 function parseJson() {
@@ -61,11 +69,21 @@ function parseJson() {
     var player2Team1 = data[0].players[2].name + " - " + data[0].players[2].rating + (data[0].players[2].won ? " (Winner)" : "");
     var player1Team2 = data[0].players[1].rating + " - " + data[0].players[1].name + (data[0].players[1].won ? " (Winner)" : "");
     var player2Team2 = data[0].players[3].rating + " - " + data[0].players[3].name + (data[0].players[3].won ? " (Winner)" : "");
+    
+    var player1Team1ColorClass = "color" + data[0].players[0].color;
+    var player2Team1ColorClass = "color" + data[0].players[2].color;
+    var player1Team2ColorClass = "color" + data[0].players[1].color;
+    var player2Team2ColorClass = "color" + data[0].players[3].color;
 
     document.getElementById("player1Team1").innerHTML = player1Team1;
     document.getElementById("player2Team1").innerHTML = player2Team1;
     document.getElementById("player1Team2").innerHTML = player1Team2;
     document.getElementById("player2Team2").innerHTML = player2Team2;
+
+    document.getElementById("player1Team1").classList.add(player1Team1ColorClass);
+    document.getElementById("player2Team1").classList.add(player2Team1ColorClass);
+    document.getElementById("player1Team2").classList.add(player1Team2ColorClass);
+    document.getElementById("player2Team2").classList.add(player2Team2ColorClass);
 }
 </script>
 
