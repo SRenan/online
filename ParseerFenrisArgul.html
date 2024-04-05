@@ -42,7 +42,7 @@
 </table>
 
 <p> <a href="skyblog.html">Back to skyblog</a> </p>
-
+    
 <script>
 function parseJson() {
     var jsonData = document.getElementById("jsonDataInput").value;
@@ -54,10 +54,10 @@ function parseJson() {
         return;
     }
     
-    var player1Team1 = data[0].players[0].name + (data[0].players[0].won ? " (Winner)" : "");
-    var player2Team1 = data[0].players[2].name + (data[0].players[2].won ? " (Winner)" : "");
-    var player1Team2 = data[0].players[1].name + (data[0].players[1].won ? " (Winner)" : "");
-    var player2Team2 = data[0].players[3].name + (data[0].players[3].won ? " (Winner)" : "");
+    var player1Team1 = data[0].players[0].name + " - " + data[0].players[0].rating + (data[0].players[0].won ? " (Winner)" : "");
+    var player2Team1 = data[0].players[2].rating + " - " + data[0].players[2].name + (data[0].players[2].won ? " (Winner)" : "");
+    var player1Team2 = data[0].players[1].name + " - " + data[0].players[1].rating + (data[0].players[1].won ? " (Winner)" : "");
+    var player2Team2 = data[0].players[3].rating + " - " + data[0].players[3].name + (data[0].players[3].won ? " (Winner)" : "");
 
     document.getElementById("player1Team1").innerHTML = player1Team1;
     document.getElementById("player2Team1").innerHTML = player2Team1;
