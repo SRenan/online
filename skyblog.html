@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <title>Ma civic chromée</title>
-    <script src="scriptures.js"></script> <!-- Defer loading the script -->
 </head>
 <body>
     <h1>Bienvenue sur le Skyblog de Kevin</h1>
@@ -16,7 +15,7 @@
 
     <h1>AoE2 last matches</h1>
 
-    <form id="myForm" onsubmit="myFunction(event)">
+    <form id="myForm">
         <label for="fname">Steam ID:</label><br>
         <input type="text" id="steamID" name="steamID" value="76561198017279363"><br>
         <label for="lname">Number of games :</label><br>
@@ -26,5 +25,7 @@
 
     <h1>Last games :</h1>
     <div id="cards"></div>
+
+    <script src="scriptures.js"></script>
 </body>
 </html>
