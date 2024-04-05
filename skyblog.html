@@ -16,10 +16,13 @@
     <h2>AoE2 last matches</h2>
 
     <form id="myForm">
-        <label for="fname">Steam ID:</label><br>
-        <input type="text" id="steamID" name="steamID" value="76561198017279363"><br>
-        <label for="lname">Number of games :</label><br>
-        <input type="text" id="nbGames" name="nbGames" value="4">
+        <label for="steamID">Steam ID:</label><br>
+        <select id="steamID" name="steamID">
+            <option value="76561198017279363">76561198017279363</option>
+            <option value="012345678901234567">012345678901234567</option>
+        </select><br>
+        <label for="nbGames">Number of games :</label><br>
+        <input type="text" id="nbGames" name="nbGames" value="1">
         <input type="submit" value="Submit">
     </form>
 
