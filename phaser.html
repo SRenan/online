@@ -10,14 +10,12 @@
     {
         preload ()
         {
-            this.load.setBaseURL('https://labs.phaser.io');
+            //this.load.setBaseURL('https://labs.phaser.io');
 
-            this.load.image('sky', 'assets/skies/space3.png');
-            this.load.image('logo', 'assets/sprites/phaser3-logo.png');
-            this.load.image('red', 'assets/particles/red.png');
-
-            this.load.setBaseURL('https://github.com/SRenan/online/tree/gh-pages/phaser/assets/');
-            this.load.image('star', 'star.jpg');
+            this.load.image('sky', 'https://labs.phaser.io/assets/skies/space3.png');
+            this.load.image('logo', 'https://labs.phaser.io/assets/sprites/phaser3-logo.png');
+            this.load.image('red', 'https://labs.phaser.io/assets/particles/red.png');
+            this.load.image('star', 'https://github.com/SRenan/online/tree/gh-pages/phaser/assets/star.jpg');
         }
 
         create ()
