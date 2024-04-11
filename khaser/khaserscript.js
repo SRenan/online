@@ -12,6 +12,8 @@ var config = {
 
 var game = new Phaser.Game(config);
 
+var player; // Define player object
+
 // Preload assets like images, audio files, etc.
 function preload() {
     // Add your preload code here
