@@ -1,7 +1,7 @@
 // Initialize Phaser
 var config = {
     type: Phaser.AUTO,
-    width: 700,
+    width: 500,
     height: 600,
     scene: {
         preload: preload,
