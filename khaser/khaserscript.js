@@ -13,6 +13,7 @@ var config = {
 var game = new Phaser.Game(config);
 
 var player; // Define player object
+var patternGroup; // Define group for patterns
 
 // Preload assets like images, audio files, etc.
 function preload() {
@@ -26,23 +27,18 @@ function create() {
     // Create a red rectangle at the bottom
     player = this.add.rectangle(150, 575, 50, 25, 0xff0000);
 
+    // Create a group for patterns
+    patternGroup = this.add.group();
+    
+    // Create and add patterns
+    createPatterns.call(this);
+
     // Enable keyboard input
     this.cursors = this.input.keyboard.createCursorKeys();
 }
 
 // Update game logic in each frame
 function update() {
-    // Add your update code here
-    
-    // Move the player left
-    if (this.cursors.left.isDown) {
-        player.x -= 5;
-    }
-    
-    // Move the player right
-    if (this.cursors.right.isDown) {
-        player.x += 5;
-    }
     
         // Move the player left if not at left edge
     if (this.cursors.left.isDown && player.x > 25) {
@@ -52,5 +48,22 @@ function update() {
     // Move the player right if not at right edge
     if (this.cursors.right.isDown && player.x < 275) {
         player.x += 5;
+    }
+
+    // Move patterns downward
+    patternGroup.getChildren().forEach(function(pattern) {
+        pattern.y += 3; // Adjust the speed of the pattern
+        // Reset pattern position when it reaches the bottom
+        if (pattern.y > 600) {
+            pattern.y = -50; // Adjust this value depending on pattern height
+        }
+    });
+
+// Create patterns and add them to the group
+function createPatterns() {
+    // Add your pattern creation code here
+    for (var i = 0; i < 5; i++) {
+        var pattern = this.add.rectangle(50 * i + 25, -50 * i, 50, 50, 0x00ff00);
+        patternGroup.add(pattern);
     }
 }
