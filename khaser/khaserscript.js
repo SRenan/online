@@ -25,7 +25,7 @@ function create() {
     // Add your create code here
     
     // Create a red rectangle at the bottom
-    player = this.add.rectangle(150, 575, 50, 25, 0xff0000);
+    player = this.add.rectangle(250, 575, 50, 25, 0xff0000);
 
     // Create a group for patterns
     patternGroup = this.add.group();
