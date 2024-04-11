@@ -88,7 +88,7 @@ function startGame() {
     // Set gameStarted to true
     gameStarted = true;
     // Create and add patterns
-    createPatterns.call(this);
+    createPattern.call(this);
     // Enable keyboard input
     this.cursors = this.input.keyboard.createCursorKeys();
 }
