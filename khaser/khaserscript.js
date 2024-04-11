@@ -43,4 +43,14 @@ function update() {
     if (this.cursors.right.isDown) {
         player.x += 5;
     }
+    
+        // Move the player left if not at left edge
+    if (this.cursors.left.isDown && player.x > 25) {
+        player.x -= 5;
+    }
+    
+    // Move the player right if not at right edge
+    if (this.cursors.right.isDown && player.x < 275) {
+        player.x += 5;
+    }
 }
