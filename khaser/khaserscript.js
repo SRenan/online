@@ -64,7 +64,13 @@ function update() {
 function createPatterns() {
     // Add your pattern creation code here
     for (var i = 0; i < 5; i++) {
-        var pattern = this.add.rectangle(50 * i + 25, -50 * i, 50, 50, 0x00ff00);
+        var pattern = this.add.rectangle(
+            Phaser.Math.Between(25, 475), // Random X position within the game area
+            Phaser.Math.Between(-600, -50), // Random Y position above the game area
+            50,
+            50,
+            0x00ff00
+        );
         patternGroup.add(pattern);
     }
 }
