@@ -8,5 +8,5 @@ When you put everything on the line</p>
 
 [skyblog](https://srenan.github.io/online/skyblog.html)
 
-[khaser](https://srenan.github.io/online/khaserSauce.html)
+[khaser](https://srenan.github.io/online/khasersauce.html)
 <p> test </p>
