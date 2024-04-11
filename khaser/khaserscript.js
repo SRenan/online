@@ -12,6 +12,7 @@ var config = {
 
 var game = new Phaser.Game(config);
 
+var startButton; // Define start button object
 var player; // Define player object
 var patternGroup; // Define group for patterns
 
@@ -35,6 +36,11 @@ function create() {
 
     // Enable keyboard input
     this.cursors = this.input.keyboard.createCursorKeys();
+    
+    // Create start button
+    startButton = this.add.text(200, 300, 'Start Game', { fontFamily: 'Arial', fontSize: 24, color: '#ffffff' })
+        .setInteractive()
+        .on('pointerdown', startGame, this);
 }
 
 // Update game logic in each frame
@@ -73,4 +79,11 @@ function createPatterns() {
         );
         patternGroup.add(pattern);
     }
+}
+
+// Function to start the game
+function startGame() {
+    // Hide the start button
+    startButton.setVisible(false);
+    // You can add additional setup code here if needed
 }
