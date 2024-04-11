@@ -40,13 +40,13 @@ function create() {
 // Update game logic in each frame
 function update() {
     
-        // Move the player left if not at left edge
+    // Move the player left if not at left edge
     if (this.cursors.left.isDown && player.x > 25) {
         player.x -= 5;
     }
     
     // Move the player right if not at right edge
-    if (this.cursors.right.isDown && player.x < 275) {
+    if (this.cursors.right.isDown && player.x < 475) { // Adjusted to 475
         player.x += 5;
     }
 
@@ -58,6 +58,7 @@ function update() {
             pattern.y = -50; // Adjust this value depending on pattern height
         }
     });
+}
 
 // Create patterns and add them to the group
 function createPatterns() {
