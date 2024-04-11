@@ -15,6 +15,7 @@ var game = new Phaser.Game(config);
 var startButton; // Define start button object
 var player; // Define player object
 var patternGroup; // Define group for patterns
+var gameStarted = false; // Track whether the game has started
 
 // Preload assets like images, audio files, etc.
 function preload() {
@@ -23,19 +24,11 @@ function preload() {
 
 // Create game objects and set up initial game state
 function create() {
-    // Add your create code here
-    
     // Create a red rectangle at the bottom
     player = this.add.rectangle(250, 575, 50, 25, 0xff0000);
 
     // Create a group for patterns
     patternGroup = this.add.group();
-    
-    // Create and add patterns
-    createPatterns.call(this);
-
-    // Enable keyboard input
-    this.cursors = this.input.keyboard.createCursorKeys();
     
     // Create start button
     startButton = this.add.text(200, 300, 'Start Game', { fontFamily: 'Arial', fontSize: 24, color: '#ffffff' })
@@ -45,14 +38,18 @@ function create() {
 
 // Update game logic in each frame
 function update() {
-    
+    // Check if the game has started
+    if (!gameStarted) {
+        return; // Exit update function if the game has not started
+    }
+
     // Move the player left if not at left edge
     if (this.cursors.left.isDown && player.x > 25) {
         player.x -= 5;
     }
     
     // Move the player right if not at right edge
-    if (this.cursors.right.isDown && player.x < 475) { // Adjusted to 475
+    if (this.cursors.right.isDown && player.x < 475) {
         player.x += 5;
     }
 
@@ -85,5 +82,10 @@ function createPatterns() {
 function startGame() {
     // Hide the start button
     startButton.setVisible(false);
-    // You can add additional setup code here if needed
+    // Set gameStarted to true
+    gameStarted = true;
+    // Create and add patterns
+    createPatterns.call(this);
+    // Enable keyboard input
+    this.cursors = this.input.keyboard.createCursorKeys();
 }
