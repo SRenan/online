@@ -70,8 +70,8 @@ function update() {
 }
 
 // Function to create a single pattern
-function createPattern() {
-    var pattern = this.add.rectangle(
+function createPattern(scene) {
+    var pattern = scene.add.rectangle(
         Phaser.Math.Between(25, 475), // Random X position within the game area
         Phaser.Math.Between(-600, -50), // Random Y position above the game area
         50,
@@ -88,7 +88,8 @@ function startGame() {
     // Set gameStarted to true
     gameStarted = true;
     // Create and add patterns
-    createPattern.call(this);
+    createPattern(this); // Pass the scene object as a parameter
     // Enable keyboard input
     this.cursors = this.input.keyboard.createCursorKeys();
 }
+
