@@ -1,3 +1,5 @@
+var gameScene; // Reference to the game scene
+
 // Initialize Phaser
 var config = {
     type: Phaser.AUTO,
@@ -25,6 +27,8 @@ function preload() {
 
 // Create game objects and set up initial game state
 function create() {
+    gameScene = this; // Store reference to the scene
+
     // Create a red rectangle at the bottom
     player = this.add.rectangle(250, 575, 50, 25, 0xff0000);
 
@@ -34,7 +38,7 @@ function create() {
     // Create start button
     startButton = this.add.text(200, 300, 'Start Game', { fontFamily: 'Arial', fontSize: 24, color: '#ffffff' })
         .setInteractive()
-        .on('pointerdown', startGame, this);
+        .on('pointerdown', startGame);
 }
 
 // Update game logic in each frame
