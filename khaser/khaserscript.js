@@ -92,8 +92,8 @@ function startGame() {
     // Set gameStarted to true
     gameStarted = true;
     // Create and add patterns
-    createPattern(this); // Pass the scene object as a parameter
+    createPattern(gameScene); // Pass the scene object as a parameter
     // Enable keyboard input
-    this.cursors = this.input.keyboard.createCursorKeys();
+    gameScene.input.keyboard.createCursorKeys(); // Create cursor keys for keyboard input
 }
 
