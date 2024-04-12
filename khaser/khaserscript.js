@@ -3,7 +3,7 @@ var gameScene; // Reference to the game scene
 // Initialize Phaser
 var config = {
     type: Phaser.AUTO,
-    width: 502,
+    width: 503,
     height: 600,
     scene: {
         preload: preload,
@@ -92,8 +92,8 @@ function startGame() {
     // Set gameStarted to true
     gameStarted = true;
     // Create and add patterns
-    createPattern(gameScene); // Pass the scene object as a parameter
+    createPattern(game.scene.scenes[0]); // Pass the first scene object as a parameter
     // Enable keyboard input
-    gameScene.input.keyboard.createCursorKeys(); // Create cursor keys for keyboard input
+    game.scene.scenes[0].input.keyboard.createCursorKeys(); // Create cursor keys for keyboard input
 }
 
