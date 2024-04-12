@@ -3,7 +3,7 @@ var gameScene; // Reference to the game scene
 // Initialize Phaser
 var config = {
     type: Phaser.AUTO,
-    width: 501,
+    width: 500,
     height: 600,
     scene: {
         preload: preload,
