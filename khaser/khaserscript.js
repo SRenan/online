@@ -5,6 +5,9 @@ var config = {
     type: Phaser.AUTO,
     width: 503,
     height: 600,
+    physics: {
+        default: 'arcade'
+    },
     scene: {
         preload: preload,
         create: create,
@@ -31,6 +34,7 @@ function create() {
 
     // Create a red rectangle at the bottom
     player = this.add.rectangle(250, 575, 50, 25, 0xff0000);
+    player = this.physics.add.staticGroup();
 
     // Create a group for patterns
     patternGroup = this.add.group();
