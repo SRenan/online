@@ -34,7 +34,7 @@ function create() {
 
     // Create a red rectangle at the bottom
     player = this.add.rectangle(250, 575, 50, 25, 0xff0000);
-    player = this.physics.add.staticGroup();
+    //player = this.physics.add.staticGroup();
 
     // Create a group for patterns
     patternGroup = this.add.group();
