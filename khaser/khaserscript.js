@@ -69,7 +69,7 @@ function update() {
 
     // Add new patterns if the number is less than the maximum
     if (patternGroup.getLength() < maxPatterns) {
-        createPattern();
+        createPattern(gameScene);
     }
 }
 
