@@ -120,6 +120,13 @@ function update(time, delta) {
 		enemy.setVelocity(0, 150);
 	}
 
+
+    // Check if score is 50
+    if (score >= 50) {
+        // Switch to Scene1
+        game.scene.start('Scene1', { elapsedTime: elapsedTime });
+    }
+	
 }
 
 // CollectStars
