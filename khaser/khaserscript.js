@@ -50,8 +50,8 @@ function create() {
     gameScene = this; // Store reference to the scene
 
     //add sounds, vérifier si c'est bien l'endroit ou le faire
-	let soundCoinReturn = this.sound.add('coin-return');
-	let soundCanOpen = this.sound.add('can-open');
+	soundCoinReturn = this.sound.add('coin-return');
+	soundCanOpen = this.sound.add('can-open');
 	soundCanOpen.play();
 
     // Create a group for patterns
