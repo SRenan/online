@@ -78,7 +78,7 @@ function create() {
 	this.physics.add.collider(player, enemies, EnemyCollision, null, this);
 	
 	//TODO: Figure out how to keep interface on top
-	scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#c90076' });
+	scoreText = this.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#c90076' });
 	// Add a text object to display elapsed time
     	elapsedTimeText = this.add.text(16, 48, 'Elapsed Time: 0', { fontSize: '24px', fill: '#ffffff' });
 }
