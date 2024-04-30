@@ -51,19 +51,24 @@ function create() {
     patternGroup = this.add.group();
     
 
-	scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#c90076' });
+
 	
     // Create start button
     startButton = this.add.text(200, 300, 'Start Game', { fontFamily: 'Arial', fontSize: 24, color: '#ffffff' })
         .setInteractive()
         .on('pointerdown', startGame);
 		
-	// Create a red rectangle at the bottom
+	// Create player
 	player = this.physics.add.sprite(250, 550, 'player');
 	player.setCollideWorldBounds(true);
-	
+	// Other elements
 	stars = this.physics.add.group();
     this.physics.add.collider(player, stars, CollectStars, null, this);
+	enemies = this.physics.add.group();
+	this.physics.add.collider(player, enemies, EnemyCollision, null, this);
+	
+	//TODO: Figure out how to keep interface on top
+	scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#c90076' });
 }
 
 // Update game logic in each frame
@@ -73,12 +78,10 @@ function update() {
         return; // Exit update function if the game has not started
     }
 
-    // Move the player left if not at left edge
+    // Controls
     if (gameScene.input.keyboard.createCursorKeys().left.isDown) {
         player.x -= 5;
     }
-    
-    // Move the player right if not at right edge
     if (gameScene.input.keyboard.createCursorKeys().right.isDown) {
         player.x += 5;
     }
@@ -91,20 +94,29 @@ function update() {
 			'star');
 		star.setVelocity(0, 70);
 	}
+	
+	if(Phaser.Math.Between(0,60) == 1){ //I assume 60 fps so drop on average 1 star/second
+		var enemy = enemies.create(
+			Phaser.Math.Between(25, 475), // Random X position within the game area
+			Phaser.Math.Between(-600, -50), // Random Y position above the game area, 'bomb');
+			'enemy');
+		enemy.setVelocity(0, 150);
+	}
 
 
-    // Move patterns downward
+    /*/ Move patterns downward
     patternGroup.getChildren().forEach(function(pattern) {
         pattern.y += 3; // Adjust the speed of the pattern
         // Reset pattern position when it reaches the bottom
         if (pattern.y > 600) {
             pattern.destroy(); // Remove the pattern from the group
         }
-    });
+    })
     // Add new patterns if the number is less than the maximum
     if (patternGroup.getLength() < maxPatterns) {
         createPattern(gameScene);
     }
+	*/
 }
 
 // CollectStars
@@ -112,6 +124,19 @@ function CollectStars(player, star){
 	star.disableBody(true, true);
 	score += 10;
     scoreText.setText('Score: ' + score);
+}
+
+function EnemyCollision(player, enemy){
+	enemy.disableBody(true, true);
+	score = score-5;
+    scoreText.setText('Score: ' + score);
+	if(score < 0){
+		this.physics.pause();
+		//TODO: Go to menu or at least reset everything
+		startButton.setVisible(true);
+		scoreText.setText('Score: ' + score + '\n Game Over!');
+		gameOver = true;
+	}
 }
 
 // Function to create a single pattern
@@ -144,3 +169,4 @@ function startGame() {
     // Enable keyboard input
     game.scene.scenes[0].input.keyboard.createCursorKeys(); // Create cursor keys for keyboard input
 }
+
