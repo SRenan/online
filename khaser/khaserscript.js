@@ -78,7 +78,7 @@ function create() {
 	this.physics.add.collider(player, enemies, EnemyCollision, null, this);
 	
 	//TODO: Figure out how to keep interface on top
-	scoreText = this.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#c90076' });
+	scoreText = this.add.text(16, 16, 'SCore: 0', { fontSize: '32px', fill: '#c90076' });
 	// Add a text object to display elapsed time
     	elapsedTimeText = this.add.text(16, 48, 'Elapsed Time: 0', { fontSize: '24px', fill: '#ffffff' });
 }
@@ -86,11 +86,8 @@ function create() {
 // Update game logic in each frame
 function update(time, delta) {
     // Check if the game has started
-    if (gameStarted) {
-        // Calculate elapsed time since the game started
-        elapsedTime = time - startTime;
-	// Update text to display elapsed time in seconds
-        elapsedTimeText.setText('Elapsed Time: ' + (elapsedTime / 1000).toFixed(2) + 's');
+    if (!gameStarted) {
+        return; // Exit update function if the game has not started
     }
 
     // Controls
@@ -101,6 +98,11 @@ function update(time, delta) {
         player.x += 5;
     }
 	
+    // Calculate elapsed time since the game started
+    elapsedTime = time - startTime;
+    // Update text to display elapsed time in seconds
+    elapsedTimeText.setText('Elapsed Time: ' + (elapsedTime / 1000).toFixed(2) + 's');
+
 	//Generate stars
 	if(Phaser.Math.Between(0,60) == 1){ //I assume 60 fps so drop on average 1 star/second
 		var star = stars.create(
