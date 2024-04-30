@@ -11,6 +11,3 @@ var Scene1 = {
     }
 };
 
-// Export the Scene1 object
-module.exports = Scene1;
-
