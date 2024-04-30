@@ -39,13 +39,19 @@ function preload() {
 	this.load.image('enemy', 'enemy_64.png');
 	this.load.image('star', 'star.png');
 	this.load.image('player', 'Vwing_small.png');
+
+	//load sounds
+	this.load.audio('coin-return', 'coin-return.mp3');
+	this.load.audio('can-open', 'can-open.mp3');
 }
 
 // Create game objects and set up initial game state
 function create() {
     gameScene = this; // Store reference to the scene
 
-    
+    //add sounds, vérifier si c'est bien l'endroit ou le faire
+	let soundCoinReturn = this.sound.add('coin-return');
+	let soundCanOpen = this.sound.add('can-open');
 
     // Create a group for patterns
     patternGroup = this.add.group();
@@ -123,12 +129,14 @@ function update() {
 function CollectStars(player, star){
 	star.disableBody(true, true);
 	score += 10;
+	soundCoinReturn.play(); //KKK tests audio
     scoreText.setText('Score: ' + score);
 }
 
 function EnemyCollision(player, enemy){
 	enemy.disableBody(true, true);
 	score = score-5;
+	soundCanOpen.play(); //KKK tests audio
     scoreText.setText('Score: ' + score);
 	if(score < 0){
 		this.physics.pause();
