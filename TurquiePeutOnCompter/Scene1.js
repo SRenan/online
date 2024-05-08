@@ -9,6 +9,9 @@ class Scene1 extends Phaser.Scene {
 		this.load.image('enemy', 'assets/images/enemy_64.png');
 		this.load.image('star', 'assets/images/star.png');
 		this.load.image('player', 'assets/images/Vwing_small.png');
+		this.load.image('buttonTakeoff', 'assets/images/buttonTakeoff.png');
+		this.load.image('buttonGarage', 'assets/images/buttonGarage.png');
+		this.load.image('buttonSettings', 'assets/images/buttonSettings.png');
 	}
 	
 	create(){

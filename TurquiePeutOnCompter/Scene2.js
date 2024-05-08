@@ -4,15 +4,28 @@ class Scene2 extends Phaser.Scene{
 	}
 	
 	create(){
-		 // Calculate the scale factor to match the width of the game's configuration
-		// Add a button
-        let button = this.add.image(100, 100, 'Play Game'); // Assuming 'button' is the key of your button image
-        button.setInteractive();
 
-        // Switch to Scene2 when the button is clicked
-        button.on('pointerdown', () => {
-            this.scene.start('playingGame');
-        });
+		// Add a button
+		
+		let buttonTakeoff = this.add.image(config.width / 2, config.height / 2, 'buttonTakeoff');
+		let buttonGarage = this.add.image(config.width / 2, config.height / 2 + 100, 'buttonGarage');
+		let buttonSettings = this.add.image(config.width / 2, config.height / 2 + 200, 'buttonSettings');	
+		
+		let buttonsMainMenu = [buttonTakeoff,buttonGarage,buttonSettings];
+		buttonsMainMenu.forEach(button => button.setInteractive());
+
+
+		buttonTakeoff.on('pointerdown', () => {
+			this.scene.start('playingGame');
+		});
+
+		buttonGarage.on('pointerdown', () => {
+			this.scene.start('garage');
+		});
+
+		buttonSettings.on('pointerdown', () => {
+			this.scene.start('settings');
+		});
 		
 
 	}
