@@ -8,9 +8,7 @@ When you put everything on the line</p>
 
 [skyblog](https://srenan.github.io/online/skyblog.html)
 
-[khaser](https://srenan.github.io/online/khasersauce.html)
-
-[khaser (subfolder)](https://srenan.github.io/online/khaser/khasersauce.html)
+[TPOC](https://srenan.github.io/online/TurquiePeutOnCompter/index.html)
 
 
 <p> test </p>
