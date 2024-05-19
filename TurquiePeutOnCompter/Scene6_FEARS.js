@@ -1,7 +1,6 @@
 class Scene6 extends Phaser.Scene{
 	constructor(){
 		super("FEARS");
-		console.log("Scene6");
 	}
 
 	create(){
