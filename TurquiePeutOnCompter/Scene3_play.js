@@ -1,9 +1,14 @@
 class Scene3 extends Phaser.Scene{
+	//public field?
+	soundCoinReturn;
+	player_projectiles;
+	
 	constructor(){
 		super("playingGame");
 	}
+
 	create(){
-		soundCoinReturn = this.sound.add('coin-return');
+		this.soundCoinReturn = this.sound.add('coin-return');
 		soundCanOpen = this.sound.add('can-open');
 		soundCanOpen.play();
 		
@@ -21,9 +26,11 @@ class Scene3 extends Phaser.Scene{
 	
 		// Other elements
 		stars = this.physics.add.group();
-		this.physics.add.collider(player, stars, CollectStars, null, this);
+		this.physics.add.collider(player, stars, this.CollectStars, null, this);
 		enemies = this.physics.add.group();
-		this.physics.add.collider(player, enemies, EnemyCollision, null, this);
+		this.physics.add.collider(player, enemies, this.EnemyCollision, null, this);
+		this.player_projectiles = this.physics.add.group();
+		this.physics.add.collider(this.player_projectiles, enemies, this.EnemyHit, null, this);
 		
 		//TODO: Figure out how to keep interface on top
 		scoreText = this.add.text(16, 16, 'SCore: 0', { fontSize: '32px', fill: '#c90076' });
@@ -42,6 +49,15 @@ class Scene3 extends Phaser.Scene{
 		}
 		if (this.input.keyboard.createCursorKeys().right.isDown) {
 			player.x += 5;
+		}
+		
+		if(this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q).isDown){
+			//this.player_shoot(player);
+			var player_projectile = this.player_projectiles.create(
+				player.body.position.x + player.body.width/2, 
+				player.body.position.y + player.body.height, 
+				'enemy');
+			player_projectile.setVelocity(0, -50);
 		}
 	
 		// Calculate elapsed time since the game started
@@ -72,6 +88,35 @@ class Scene3 extends Phaser.Scene{
 			// Switch to Scene1
 			game.scene.start('Scene2', { elapsedTime: elapsedTime });
 		}
+	}
+	
+	// Other methods
+	CollectStars(player, star){
+		star.disableBody(true, true);
+		score += 10;
+		this.soundCoinReturn.play(); //KKK tests audio
+		scoreText.setText('Score: ' + score);
+	}
+	EnemyCollision(player, enemy){
+		enemy.disableBody(true, true);
+		score = score-5;
+		soundCanOpen.play(); //KKK tests audio
+		scoreText.setText('Score: ' + score);
+		if(score < 0){
+			this.physics.pause();
+			//TODO: Go to menu or at least reset everything
+			backToMenuButton.setVisible(true);
+			scoreText.setText('Score: ' + score + '\n Game Over!');
+			gameOver = true;
+		}
+	}
+	EnemyHit(player_projectile, enemy){
+		enemy.disableBody(true, true);
+		player_projectile.disableBody(true, true);
+		score += 1;
+		scoreText.setText('Score: ' + score);
+	}
+	player_shoot(player){
 	}
 }
 
