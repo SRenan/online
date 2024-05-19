@@ -55,8 +55,9 @@ class Scene3 extends Phaser.Scene{
 			//this.player_shoot(player);
 			var player_projectile = this.player_projectiles.create(
 				player.body.position.x + player.body.width/2, 
-				player.body.position.y + player.body.height, 
-				'enemy');
+				player.body.position.y,				
+				'bullet');
+				console.log(player.body.height);
 			player_projectile.setVelocity(0, -50);
 		}
 	
