@@ -1,7 +1,9 @@
-class Scene3 extends Phaser.Scene{
+class Scene6 extends Phaser.Scene{
 	constructor(){
-		super("playingGame");
+		super("FEARS");
+		console.log("Scene6");
 	}
+
 	create(){
 		 // Calculate the scale factor to match the width of the game's configuration
         let scale = config.width / this.textures.get("mainMenuBackground").getSourceImage().width;
