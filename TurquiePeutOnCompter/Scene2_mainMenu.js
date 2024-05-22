@@ -19,23 +19,17 @@ class Scene2 extends Phaser.Scene{
 		buttonTakeoff.on('pointerdown', () => {
 			this.scene.start('playingGame');
 		});
-
 		buttonGarage.on('pointerdown', () => {
 			this.scene.start('garage');
 		});
-
 		buttonSettings.on('pointerdown', () => {
 			this.scene.start('settings');
-		});
-		
+		});		
 		buttonFEARS.on('pointerdown', () => {
 			this.scene.start('FEARS');
 		});
-		
-
 	}
 	
 	update(){
-
 	}
 }

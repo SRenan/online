@@ -1,5 +1,5 @@
 class Scene3 extends Phaser.Scene{
-	//public field?
+	//public field. //TODO: I don't think that is the correct way to hold class variables.
 	soundCoinReturn;
 	player_projectiles;
 	
