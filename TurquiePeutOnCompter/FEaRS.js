@@ -16,9 +16,11 @@ var config = {
 
 
 var game = new Phaser.Game(config);
+var gameOver;
 var player;
 var stars;
 var enemies;
+var player_projectiles;
 
 var startButton;
 var backToMenuButton;
@@ -38,5 +40,5 @@ function startGame() {
     // Set gameStarted to true
     gameStarted = true;
 	// Store the start time
-	startTime = game.time.now;
+	//startTime = game.time.now;
 }

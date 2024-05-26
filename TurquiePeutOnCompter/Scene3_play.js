@@ -28,6 +28,13 @@ class Scene3 extends Phaser.Scene{
 		stars = this.physics.add.group();
 		this.physics.add.collider(player, stars, this.CollectStars, null, this);
 		enemies = this.physics.add.group();
+		
+		this.anims.create({
+			key: 'explosion_blue',
+			frames:  this.anims.generateFrameNumbers('explosion_blue_sheet', { start: 0, end: 4 }),
+			frameRate: 10,
+			repeat: 0
+		});
 		this.physics.add.collider(player, enemies, this.EnemyCollision, null, this);
 		this.player_projectiles = this.physics.add.group();
 		this.physics.add.collider(this.player_projectiles, enemies, this.EnemyHit, null, this);
@@ -57,7 +64,7 @@ class Scene3 extends Phaser.Scene{
 				player.body.position.x + player.body.width/2, 
 				player.body.position.y,				
 				'bullet');
-				console.log(player.body.height);
+				//console.log(player.body.height);
 			player_projectile.setVelocity(0, -50);
 		}
 	
@@ -104,6 +111,11 @@ class Scene3 extends Phaser.Scene{
 		soundCanOpen.play(); //KKK tests audio
 		scoreText.setText('Score: ' + score);
 		if(score < 0){
+			player.anims.play('explosion_blue', true);
+			player.on('animationcomplete', (animation, frame) => {
+			if (animation.key === 'explosion_blue') {
+				player.setVisible(false);
+			}}); //Listen to the animationcomplete event and remove the player
 			this.physics.pause();
 			//TODO: Go to menu or at least reset everything
 			backToMenuButton.setVisible(true);
@@ -112,10 +124,11 @@ class Scene3 extends Phaser.Scene{
 		}
 	}
 	EnemyHit(player_projectile, enemy){
-		enemy.disableBody(true, true);
-		player_projectile.disableBody(true, true);
+		enemy.anims.play('explosion_blue', true);
+		enemy.destroy();//disableBody(true, true);
+		player_projectile.destroy();//disableBody(true, true);
 		score += 1;
-		scoreText.setText('Score: ' + score);
+		scoreText.setText('Score: ' + score);	
 	}
 	player_shoot(player){
 	}
