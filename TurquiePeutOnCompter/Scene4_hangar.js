@@ -5,11 +5,11 @@ class Scene4 extends Phaser.Scene{
 	
 	create(){
 
-        	this.equipAirplaneCommon = this.add.image(config.width * 0.33 , config.height / 2, 'airplane.png');
+        	this.equipAirplaneCommon = this.add.image(config.width * 0.33 , config.height / 2, 'airplane.png')
 			.setInteractive()
 			.on('pointerdown',() => this.equipAirplane('airplane.png'));
 		
-		this.equipAirplaneRare = this.add.image(config.width * 0.66 , config.height / 2, 'airplane_rare.png');
+		this.equipAirplaneRare = this.add.image(config.width * 0.66 , config.height / 2, 'airplane_rare.png')
 			.setInteractive()
 			.on('pointerdown',() => this.equipAirplane('airplane_rare.png'));
 
