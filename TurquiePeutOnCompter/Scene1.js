@@ -9,7 +9,7 @@ class Scene1 extends Phaser.Scene {
 		this.load.image("mainMenuBackground","assets/images/800px-Flat_Earth_Society_Logo.png");
 		this.load.image('Vwing', 'assets/images/Vwing.png');
 		this.load.image('player', 'assets/images/airplane.png');
-		this.load.image('playerAltStyle', 'assets/images/'airplane_rare.png'); 
+		this.load.image('playerAltStyle', 'assets/images/airplane_rare.png'); 
 		this.load.image('bullet', 'assets/images/bullet.png');
 		//this.load.image('enemy', 'assets/images/enemy_64.png');
 		this.load.image('enemy', 'assets/images/airplane_gimp.png');
