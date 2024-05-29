@@ -71,7 +71,7 @@ class Scene3 extends Phaser.Scene{
 		// Calculate elapsed time since the game started
 		elapsedTime = time - startTime;
 		// Update text to display elapsed time in seconds
-		elapsedTimeText.setText('Elapsed Time: ' + (elapsedTime / 1000).toFixed(2) + 's');
+		elapsedTimeText.setText('Elapsed Time: ' + (elapsedTime).toFixed(2) + 's');
 
 		//Generate stars
 		if(Phaser.Math.Between(0,60) == 1){ //I assume 60 fps so drop on average 1 star/second
