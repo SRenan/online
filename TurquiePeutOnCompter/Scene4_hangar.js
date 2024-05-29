@@ -15,6 +15,7 @@ class Scene4 extends Phaser.Scene{
 
 		
 		let buttonBack = this.add.image(config.width / 2 , config.height *0.80, 'buttonBack')
+			.setScale(0.20, 0.20)
 			.setInteractive()
 			.on('pointerdown',() => this.scene.start('mainMenu'));	
 		
