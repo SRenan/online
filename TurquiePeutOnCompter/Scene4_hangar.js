@@ -37,7 +37,4 @@ class Scene4 extends Phaser.Scene{
     	smoke.play('smoke_effect');
 	}
 
-	update() {
-		let hangarPreview = this.add.image(250, 550, currentAirplane);
-	}
 }
