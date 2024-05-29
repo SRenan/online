@@ -12,11 +12,11 @@ class Scene4 extends Phaser.Scene{
 			repeat: 1
 		});
 		
-        	this.equipAirplaneCommon = this.add.image(config.width * 0.33 , config.height / 2, 'player')
+        	this.equipAirplaneCommon = this.add.image(config.width * 0.66 , config.height / 2, 'player')
 			.setInteractive()
 			.on('pointerdown',() => this.equipAirplane('player', this.equipAirplaneCommon));
 		
-		this.equipAirplaneRare = this.add.image(config.width * 0.66 , config.height / 2, 'playerAltStyle')
+		this.equipAirplaneRare = this.add.image(config.width * 0.33 , config.height / 2, 'playerAltStyle')
 			.setInteractive()
 			.on('pointerdown',() => this.equipAirplane('playerAltStyle', this.equipAirplaneRare));
 
