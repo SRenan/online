@@ -36,4 +36,8 @@ class Scene4 extends Phaser.Scene{
     	const smoke = this.add.sprite(image.x, image.y, 'smoke_sheet').setScale(2);
     	smoke.play('smoke_effect');
 	}
+
+	update() {
+		let hangarPreview = this.add.image(250, 550, currentAirplane);
+	}
 }
