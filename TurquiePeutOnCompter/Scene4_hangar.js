@@ -21,6 +21,6 @@ class Scene4 extends Phaser.Scene{
 	}
 
 	equipAirplane(choice) {
-		localStorage.setItem('currentPlane', choice);
+		localStorage.setItem('currentAirplane', choice);
 	}
 }
