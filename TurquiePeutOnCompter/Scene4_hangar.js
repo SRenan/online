@@ -14,7 +14,7 @@ class Scene4 extends Phaser.Scene{
 			.on('pointerdown',() => this.equipAirplane('airplane_rare.png'));
 
 		
-		let buttonBack = this.add.image(config.width / 2 , config.height *0.66, 'buttonBack')
+		let buttonBack = this.add.image(config.width / 2 , config.height *0.80, 'buttonBack')
 			.setInteractive()
 			.on('pointerdown',() => this.scene.start('mainMenu'));	
 		
