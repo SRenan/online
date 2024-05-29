@@ -17,7 +17,7 @@ class Scene4 extends Phaser.Scene{
 			key: 'smoke_effect',
 			frames: this.anims.generateFrameNumbers('smoke_sheet', {start: 0, end: 6}),
 			frameRate: 20,
-			repeat: -1
+			repeat: 0
 		});
 		
 		let buttonBack = this.add.image(config.width / 2 , config.height *0.80, 'buttonBack')
@@ -31,7 +31,7 @@ class Scene4 extends Phaser.Scene{
 		localStorage.setItem('currentAirplane', choice);
 		
 	// Display smoke effect over the selected plane image
-    	const smoke = this.add.sprite(image.x, image.y, 'smoke').setScale(1);
+    	const smoke = this.add.sprite(image.x, image.y, 'smoke').setScale(2);
     	smoke_sheet.play('smoke_effect');
 	}
 }
