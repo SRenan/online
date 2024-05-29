@@ -31,7 +31,7 @@ class Scene4 extends Phaser.Scene{
 		localStorage.setItem('currentAirplane', choice);
 		
 	// Display smoke effect over the selected plane image
-    	const smoke = this.add.sprite(image.x, image.y, 'smoke').setScale(2);
+    	const smoke = this.add.sprite(image.x, image.y, 'smoke_sheet').setScale(2);
     	smoke_sheet.play('smoke_effect');
 	}
 }
