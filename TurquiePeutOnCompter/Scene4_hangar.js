@@ -8,15 +8,15 @@ class Scene4 extends Phaser.Scene{
 		this.anims.create({
 			key: 'smoke_effect',
 			frames: this.anims.generateFrameNumbers('smoke_sheet', {start: 0, end: 6}),
-			frameRate: 50,
-			repeat: 0
+			frameRate: 10,
+			repeat: 1
 		});
 		
-        	this.equipAirplaneCommon = this.add.image(config.width * 0.33 , config.height / 3, 'player')
+        	this.equipAirplaneCommon = this.add.image(config.width * 0.33 , config.height / 2, 'player')
 			.setInteractive()
 			.on('pointerdown',() => this.equipAirplane('player', this.equipAirplaneCommon));
 		
-		this.equipAirplaneRare = this.add.image(config.width * 0.66 , config.height / 3, 'playerAltStyle')
+		this.equipAirplaneRare = this.add.image(config.width * 0.66 , config.height / 2, 'playerAltStyle')
 			.setInteractive()
 			.on('pointerdown',() => this.equipAirplane('playerAltStyle', this.equipAirplaneRare));
 
