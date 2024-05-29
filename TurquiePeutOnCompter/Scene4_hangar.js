@@ -7,12 +7,18 @@ class Scene4 extends Phaser.Scene{
 
         	this.equipAirplaneCommon = this.add.image(config.width * 0.33 , config.height / 2, 'player')
 			.setInteractive()
-			.on('pointerdown',() => this.equipAirplane('player'));
+			.on('pointerdown',() => this.equipAirplane('player', this.equipAirplaneCommon));
 		
 		this.equipAirplaneRare = this.add.image(config.width * 0.66 , config.height / 2, 'playerAltStyle')
 			.setInteractive()
-			.on('pointerdown',() => this.equipAirplane('playerAltStyle'));
+			.on('pointerdown',() => this.equipAirplane('playerAltStyle', this.equipAirplaneRare));
 
+		this.anims.create({
+			key: 'smoke_effect',
+			frames: this.anims.generateFrameNumbers('smoke_sheet', {start: 0, end: 6}),
+			frameRate: 20,
+			repeat: -1
+		});
 		
 		let buttonBack = this.add.image(config.width / 2 , config.height *0.80, 'buttonBack')
 			.setScale(0.20, 0.20)
@@ -21,7 +27,11 @@ class Scene4 extends Phaser.Scene{
 		
 	}
 
-	equipAirplane(choice) {
+	equipAirplane(choice,image) {
 		localStorage.setItem('currentAirplane', choice);
+		
+	// Display smoke effect over the selected plane image
+    	const smoke = this.add.sprite(image.x, image.y, 'smoke').setScale(1);
+    	smoke_sheet.play('smoke_effect');
 	}
 }
