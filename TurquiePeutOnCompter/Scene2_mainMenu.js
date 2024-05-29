@@ -8,7 +8,7 @@ class Scene2 extends Phaser.Scene{
 		//Current plane or something.
 		const currentAirplane = localStorage.getItem('currentAirplane') || 'player';
 
-		let hangarPreview = this.add.image(config.width / 2, config.height / 3 + 400, currentAirplane);
+		let hangarPreview = this.add.image(250, 550, currentAirplane);
 
 		
 		// Add a button
