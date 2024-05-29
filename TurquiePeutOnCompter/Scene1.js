@@ -21,6 +21,7 @@ class Scene1 extends Phaser.Scene {
 		this.load.image('buttonFEARS', 'assets/images/buttonFEARS.png');
 		this.load.image('buttonBack', 'assets/images/buttonBack.png');
 		this.load.spritesheet('explosion_blue_sheet', 'assets/images/explosion_blue_sheet.png', { frameWidth: 32, frameHeight: 32});
+		this.load.spritesheet('smoke_sheet', 'assets/images/smoke_sheet.png', { frameWidth : 70, frameHeight: 64});
 		
 		//load sounds
 		this.load.audio('coin-return', 'assets/sounds/coin-return.mp3');
