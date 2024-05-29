@@ -13,7 +13,6 @@ class Scene4 extends Phaser.Scene{
 			.setInteractive()
 			.on('pointerdown',() => this.equipAirplane('airplane_rare.png'));
 
-		s
 		
 		let buttonBack = this.add.image(config.width / 2 , config.height *0.66, 'buttonBack.png')
 			.setInteractive()
