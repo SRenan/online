@@ -10,9 +10,6 @@ class Scene2 extends Phaser.Scene{
 
 		let hangarPreview = this.add.image(250, 550, currentAirplane);
 
-		
-		// Add a button
-		
 		let buttonTakeoff = this.add.image(config.width / 2, config.height / 4, 'buttonTakeoff');
 		let buttonGarage = this.add.image(config.width / 2, config.height / 4 + 100, 'buttonGarage');
 		let buttonSettings = this.add.image(config.width / 2, config.height / 4 + 200, 'buttonSettings');

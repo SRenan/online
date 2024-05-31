@@ -1,32 +1,21 @@
 class Scene3 extends Phaser.Scene{
-	//public field. //TODO: I don't think that is the correct way to hold class variables.
-	soundCoinReturn;
-	player_projectiles;
-	
 	constructor(){
 		super("playingGame");
 	}
 
-	create(){
-		this.soundCoinReturn = this.sound.add('coin-return');
-		soundCanOpen = this.sound.add('can-open');
-		soundCanOpen.play();
-		
-		// Create buttons
-		startButton = this.add.text(200, 300, 'Start Game', { fontFamily: 'Arial', fontSize: 24, color: '#ffffff' })
-			.setInteractive()
-			.on('pointerdown', startGame);
-		backToMenuButton = this.add.text(200, 300, 'Back to menu', { fontFamily: 'Arial', fontSize: 24, color: '#ffffff' })
-			.setVisible(false)
-			.setInteractive()
-			.on('pointerdown', () => {this.scene.start('mainMenu');});
+	preload(){
+	}
 
+	create(){
+		this.gameStarted = false; // Track whether the game has started
+		this.soundCoinReturn = this.sound.add('coin-return');
+		this.soundCanOpen = this.sound.add('can-open');
+		
 		player = this.physics.add.sprite(250, 550, 'player');
 		player.setCollideWorldBounds(true);
 	
 		// Other elements
 		stars = this.physics.add.group();
-		this.physics.add.collider(player, stars, this.CollectStars, null, this);
 		enemies = this.physics.add.group();
 		
 		this.anims.create({
@@ -35,18 +24,33 @@ class Scene3 extends Phaser.Scene{
 			frameRate: 10,
 			repeat: 0
 		});
-		this.physics.add.collider(player, enemies, this.EnemyCollision, null, this);
+
 		this.player_projectiles = this.physics.add.group();
+
+		/*-------------------- colliders --------------------*/
+		this.physics.add.collider(player, enemies, this.EnemyCollision, null, this);
+		this.physics.add.collider(player, stars, this.CollectStars, null, this);
 		this.physics.add.collider(this.player_projectiles, enemies, this.EnemyHit, null, this);
 		
-		//TODO: Figure out how to keep interface on top
-		scoreText = this.add.text(16, 16, 'SCore: 0', { fontSize: '32px', fill: '#c90076' });
-		// Add a text object to display elapsed time
-    	elapsedTimeText = this.add.text(16, 48, 'Elapsed Time: 0', { fontSize: '24px', fill: '#ffffff' });
+		/*-------------------- interface --------------------*/
+		// Create buttons
+		this.startButton = this.add.text(200, 300, 'Start Game', { fontFamily: 'Arial', fontSize: 24, color: '#ffffff' });
+		this.startButton.setInteractive();
+		this.startButton.on('pointerdown', this.startGame.bind(this));
+
+		const backToMenuButton = this.add.text(400, 10, 'Back to\nmenu', { fontFamily: 'Arial', fontSize: 24, color: '#ffffff' })
+		backToMenuButton.setInteractive()
+		backToMenuButton.on('pointerdown', () => {this.scene.start('mainMenu');});
+
+		this.score = 0;
+		this.scoreText = this.add.text(16, 16, 'SCore: 0', { fontSize: '32px', fill: '#c90076' });
+		this.startTime = 0;
+		this.elapsedTime = 0;
+    	this.elapsedTimeText = this.add.text(16, 48, 'Elapsed Time: '+ this.score, { fontSize: '24px', fill: '#ffffff' });
 	}
 	
 	update(time){
-		if (!gameStarted) {
+		if (!this.gameStarted) {
 			return; // Exit update function if the game has not started
 		}
 
@@ -69,9 +73,9 @@ class Scene3 extends Phaser.Scene{
 		}
 	
 		// Calculate elapsed time since the game started
-		elapsedTime = time - startTime;
+		this.elapsedTime = time - this.startTime;
 		// Update text to display elapsed time in seconds
-		elapsedTimeText.setText('Elapsed Time: ' + (elapsedTime).toFixed(2) + 's');
+		this.elapsedTimeText.setText('Elapsed Time: ' + (this.elapsedTime/1000).toFixed(2) + 's');
 
 		//Generate stars
 		if(Phaser.Math.Between(0,60) == 1){ //I assume 60 fps so drop on average 1 star/second
@@ -90,47 +94,49 @@ class Scene3 extends Phaser.Scene{
 			enemy.setVelocity(0, 150);
 		}
 
-
 		// Check if score is 50
-		if (score >= 50) {
+		if (this.score >= 50) {
 			// Switch to Scene1
-			game.scene.start('Scene2', { elapsedTime: elapsedTime });
+			game.scene.start('Scene2', { elapsedTime: this.elapsedTime });
 		}
 	}
 	
 	// Other methods
+	startGame(){
+		// Store the start time
+		this.startTime = this.time.now;
+		// Hide the start button
+		this.startButton.setVisible(false);
+		this.gameStarted = true;
+	}
 	CollectStars(player, star){
 		star.disableBody(true, true);
-		score += 10;
+		this.score += 10;
 		this.soundCoinReturn.play(); //KKK tests audio
-		scoreText.setText('Score: ' + score);
+		this.scoreText.setText('Score: ' + this.score);
 	}
 	EnemyCollision(player, enemy){
 		enemy.disableBody(true, true);
-		score = score-5;
-		soundCanOpen.play(); //KKK tests audio
-		scoreText.setText('Score: ' + score);
-		if(score < 0){
-			player.anims.play('explosion_blue', true);
-			player.on('animationcomplete', (animation, frame) => {
-			if (animation.key === 'explosion_blue') {
-				player.setVisible(false);
-			}}); //Listen to the animationcomplete event and remove the player
-			this.physics.pause();
-			//TODO: Go to menu or at least reset everything
-			backToMenuButton.setVisible(true);
-			scoreText.setText('Score: ' + score + '\n Game Over!');
-			gameOver = true;
-		}
+		this.soundCanOpen.play(); //KKK tests audio
+		this.scoreText.setText('Score: ' + this.score);
+		player.anims.play('explosion_blue', true);
+		player.on('animationcomplete', (animation, frame) => {
+		if (animation.key === 'explosion_blue') {
+			player.setVisible(false);
+		}}); //Listen to the animationcomplete event and remove the player
+		this.physics.pause();
+		this.gameOver();
 	}
 	EnemyHit(player_projectile, enemy){
 		enemy.anims.play('explosion_blue', true);
 		enemy.destroy();//disableBody(true, true);
 		player_projectile.destroy();//disableBody(true, true);
-		score += 1;
-		scoreText.setText('Score: ' + score);	
+		this.score += 1;
+		this.scoreText.setText('Score: ' + this.score);	
 	}
-	player_shoot(player){
+	gameOver(){
+		this.summaryText = this.add.text(200, 200, 'Good run\nFinal score: '+this.score, { fontSize: '32px', fill: '#000' });
+	    this.time.delayedCall(5000, () => this.scene.start('mainMenu')); //After 5s, go to main menu
 	}
 }
 
