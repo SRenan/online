@@ -4,7 +4,7 @@ class Scene4 extends Phaser.Scene{
 	}
 	
 	create(){
-		
+
 		this.anims.create({
 			key: 'smoke_effect',
 			frames: this.anims.generateFrameNumbers('smoke_sheet', {start: 0, end: 6}),
@@ -38,5 +38,4 @@ class Scene4 extends Phaser.Scene{
 			smoke.destroy();
 		});	
 	}
-
 }
