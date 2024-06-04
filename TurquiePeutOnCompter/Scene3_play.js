@@ -5,6 +5,7 @@ class Scene3 extends Phaser.Scene{
 	
 	constructor(){
 		super("playingGame");
+                this.timer = 0;
 	}
 
 	create(){
@@ -45,7 +46,7 @@ class Scene3 extends Phaser.Scene{
     	elapsedTimeText = this.add.text(16, 48, 'Elapsed Time: 0', { fontSize: '24px', fill: '#ffffff' });
 	}
 	
-	update(time){
+	update(time, delta){
 		if (!gameStarted) {
 			return; // Exit update function if the game has not started
 		}
@@ -89,7 +90,12 @@ class Scene3 extends Phaser.Scene{
 				'enemy');
 			enemy.setVelocity(0, 150);
 		}
-
+	        this.timer += delta;
+	        if(this.timer >= 3000){
+	            this.createEnemy();
+	            this.createPlatform();
+	            this.timer = 0;
+	        }   
 
 		// Check if score is 50
 		if (score >= 50) {
@@ -99,6 +105,12 @@ class Scene3 extends Phaser.Scene{
 	}
 	
 	// Other methods
+	createEnemy(){
+		const randX
+        	const bomb = this.bombs.create(randX, -100, 'enemy2');
+        	bomb.setVelocityY(-100);
+    	}   
+
 	CollectStars(player, star){
 		star.disableBody(true, true);
 		score += 10;
