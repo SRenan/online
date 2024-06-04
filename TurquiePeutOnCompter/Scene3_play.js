@@ -18,6 +18,7 @@ class Scene3 extends Phaser.Scene{
 		// Other elements
 		stars = this.physics.add.group();
 		enemies = this.physics.add.group();
+		this.enemies2 = this.physics.add.group();
 		
 		this.anims.create({
 			key: 'explosion_blue',
@@ -30,8 +31,10 @@ class Scene3 extends Phaser.Scene{
 
 		/*-------------------- colliders --------------------*/
 		this.physics.add.collider(player, enemies, this.EnemyCollision, null, this);
+		this.physics.add.collider(player, this.enemies2, this.EnemyCollision, null, this);
 		this.physics.add.collider(player, stars, this.CollectStars, null, this);
 		this.physics.add.collider(this.player_projectiles, enemies, this.EnemyHit, null, this);
+		this.physics.add.collider(this.player_projectiles, this.enemies2, this.EnemyHit, null, this);
 		
 		/*-------------------- interface --------------------*/
 		// Create buttons
@@ -95,9 +98,8 @@ class Scene3 extends Phaser.Scene{
 			enemy.setVelocity(0, 150);
 		}
 	        this.timer += delta;
-	        if(this.timer >= 3000){
+	        if(this.timer >= 2000){
 	            this.createEnemy();
-	            this.createPlatform();
 	            this.timer = 0;
 	        }   
 
@@ -110,10 +112,10 @@ class Scene3 extends Phaser.Scene{
 	
 	// Other methods
 	createEnemy(){
-		const randX
-        	const bomb = this.bombs.create(randX, -100, 'enemy2');
-        	bomb.setVelocityY(-100);
-    	}   
+		const randX = Phaser.Math.Between(10, 490);
+        const enemy2 = this.enemies2.create(randX, -100, 'enemy2');
+        enemy2.setVelocityY(100);
+    }   
 
 	startGame(){
 		// Store the start time
