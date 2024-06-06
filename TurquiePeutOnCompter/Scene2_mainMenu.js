@@ -15,7 +15,7 @@ class Scene2 extends Phaser.Scene{
 		let buttonGarage2 = this.add.image(config.width / 2, config.height / 4 + 200, 'buttonGarage');
 		let buttonSettings = this.add.image(config.width / 2, config.height / 4 + 300, 'buttonSettings');
 		
-		let buttonsMainMenu = [buttonTakeoff,buttonGarage,buttonGarage2,buttonSettingsS];
+		let buttonsMainMenu = [buttonTakeoff,buttonGarage,buttonGarage2,buttonSettings];
 		buttonsMainMenu.forEach(button => button.setInteractive());
 
 
