@@ -12,10 +12,11 @@ class Scene2 extends Phaser.Scene{
 
 		let buttonTakeoff = this.add.image(config.width / 2, config.height / 4, 'buttonTakeoff');
 		let buttonGarage = this.add.image(config.width / 2, config.height / 4 + 100, 'buttonGarage');
-		let buttonSettings = this.add.image(config.width / 2, config.height / 4 + 200, 'buttonSettings');
-		let buttonFEARS = this.add.image(config.width / 2, config.height / 4 + 300, 'buttonFEARS');
+		let buttonGarage2 = this.add.image(config.width / 2, config.height / 4 + 200, 'buttonGarage');
+		let buttonSettings = this.add.image(config.width / 2, config.height / 4 + 300, 'buttonSettings');
+		let buttonFEARS = this.add.image(config.width / 2, config.height / 4 + 400, 'buttonFEARS');
 		
-		let buttonsMainMenu = [buttonTakeoff,buttonGarage,buttonSettings,buttonFEARS];
+		let buttonsMainMenu = [buttonTakeoff,buttonGarage,buttonGarage2,buttonSettings,buttonFEARS];
 		buttonsMainMenu.forEach(button => button.setInteractive());
 
 
@@ -24,6 +25,9 @@ class Scene2 extends Phaser.Scene{
 		});
 		buttonGarage.on('pointerdown', () => {
 			this.scene.start('garage');
+		});
+		buttonGarage2.on('pointerdown', () => {
+			this.scene.start('garage2');
 		});
 		buttonSettings.on('pointerdown', () => {
 			this.scene.start('settings');

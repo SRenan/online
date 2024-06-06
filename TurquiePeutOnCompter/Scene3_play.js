@@ -12,7 +12,7 @@ class Scene3 extends Phaser.Scene{
 		this.soundCoinReturn = this.sound.add('coin-return');
 		this.soundCanOpen = this.sound.add('can-open');
 		
-		player = this.physics.add.sprite(250, 550, 'player');
+		player = this.physics.add.sprite(250, 550, player_config.sprite_key);
 		player.setCollideWorldBounds(true);
 	
 		// Other elements
@@ -27,6 +27,7 @@ class Scene3 extends Phaser.Scene{
 			repeat: 0
 		});
 
+		this.canShoot = true;
 		this.player_projectiles = this.physics.add.group();
 
 		/*-------------------- colliders --------------------*/
@@ -66,7 +67,7 @@ class Scene3 extends Phaser.Scene{
 			player.x += 5;
 		}
 		
-		if(this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q).isDown){
+		if(this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q).isDown && this.canShoot){
 			//this.player_shoot(player);
 			var player_projectile = this.player_projectiles.create(
 				player.body.position.x + player.body.width/2, 
@@ -74,6 +75,10 @@ class Scene3 extends Phaser.Scene{
 				'bullet');
 				//console.log(player.body.height);
 			player_projectile.setVelocity(0, -50);
+			this.canShoot = false;
+			this.time.delayedCall(1000, () => {
+				this.canShoot = true;
+			  });
 		}
 	
 		// Calculate elapsed time since the game started

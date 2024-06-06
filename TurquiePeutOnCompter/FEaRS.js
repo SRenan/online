@@ -11,12 +11,16 @@ var config = {
             			debug: false
 			}
 	},
-	scene: [Scene1, Scene2, Scene3, Scene4, Scene5,Scene6]
+	scene: [Scene1, Scene2, Scene3, Scene4, Scene4b, Scene5, Scene6]
 }
 
 
 var game = new Phaser.Game(config);
 var player;
+var player_config = {
+	player_name: 'player',
+	sprite_key: 'player'
+}
 var stars;
 var enemies;
 var player_projectiles;
