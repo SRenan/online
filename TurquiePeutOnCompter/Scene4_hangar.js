@@ -2,7 +2,13 @@ class Scene4 extends Phaser.Scene{
 	constructor(){
 		super("garage");
 	}
+
+	create(){
+		let selectbox = this.add.image(config.width * 0.5 , config.height * 0.2, 'unlock');
+	}
 	
+}
+/*	
 	create(){
 
 		this.anims.create({
@@ -11,6 +17,8 @@ class Scene4 extends Phaser.Scene{
 			frameRate: 5,
 			repeat: 1
 		});
+		
+
 		
         	this.equipAirplaneCommon = this.add.image(config.width * 0.66 , config.height / 2, 'player')
 			.setInteractive()
@@ -39,3 +47,4 @@ class Scene4 extends Phaser.Scene{
 		});	
 	}
 }
+*/
