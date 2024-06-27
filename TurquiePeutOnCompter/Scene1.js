@@ -29,6 +29,7 @@ class Scene1 extends Phaser.Scene {
 		//load sounds
 		this.load.audio('coin-return', 'assets/sounds/coin-return.mp3');
 		this.load.audio('can-open', 'assets/sounds/can-open.mp3');
+		this.load.audio('testBeep', 'assets/sounds/beep.ogg');
 	}
 	
 	create(){

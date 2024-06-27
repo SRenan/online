@@ -14,6 +14,7 @@ class Scene3 extends Phaser.Scene{
 		
 		player = this.physics.add.sprite(250, 550, player_config.sprite_key);
 		player.setCollideWorldBounds(true);
+		this.money = 0;
 	
 		// Other elements
 		stars = this.physics.add.group();
@@ -106,13 +107,7 @@ class Scene3 extends Phaser.Scene{
 	        if(this.timer >= 2000){
 	            this.createEnemy();
 	            this.timer = 0;
-	        }   
-
-		// Check if score is 50
-		if (this.score >= 50) {
-			// Switch to Scene1
-			game.scene.start('Scene2', { elapsedTime: this.elapsedTime });
-		}
+	        }
 	}
 	
 	// Other methods
@@ -132,7 +127,8 @@ class Scene3 extends Phaser.Scene{
 	CollectStars(player, star){
 		star.disableBody(true, true);
 		this.score += 10;
-		this.soundCoinReturn.play(); //KKK tests audio
+		this.money  += 1;
+		this.soundCoinReturn.play({volume: config.settings.volume}); //KKK tests audio
 		this.scoreText.setText('Score: ' + this.score);
 	}
 	EnemyCollision(player, enemy){
@@ -156,6 +152,7 @@ class Scene3 extends Phaser.Scene{
 	}
 	gameOver(){
 		this.summaryText = this.add.text(200, 200, 'Good run\nFinal score: '+this.score, { fontSize: '32px', fill: '#000' });
+		player_stats.money = this.money;
 	    this.time.delayedCall(5000, () => this.scene.start('mainMenu')); //After 5s, go to main menu
 	}
 }

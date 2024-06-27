@@ -11,6 +11,9 @@ var config = {
             			debug: false
 			}
 	},
+    settings: {
+		volume: .75
+	  },
 	scene: [Scene1, Scene2, Scene3, Scene4, Scene4b, Scene5, Scene6]
 }
 
@@ -20,7 +23,11 @@ var player;
 var player_config = {
 	player_name: 'player',
 	sprite_key: 'player'
-}
+};
+var player_stats ={
+	money: 0,
+	max_score: 0
+};
 var stars;
 var enemies;
 var player_projectiles;

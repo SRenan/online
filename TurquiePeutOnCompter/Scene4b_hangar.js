@@ -9,6 +9,8 @@ class Scene4b extends Phaser.Scene{
 		backToMenuButton.setInteractive()
 		backToMenuButton.on('pointerdown', () => {this.scene.start('mainMenu');});
 
+        this.moneyText = this.add.text(16, 16, '$$: ' + player_stats.money, { fontSize: '32px', fill: '#000' });
+
 		player = this.physics.add.sprite(250, 550, player_config.sprite_key);
 		player.setCollideWorldBounds(true);
 
